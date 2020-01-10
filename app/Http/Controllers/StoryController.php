@@ -71,6 +71,7 @@ class StoryController extends Controller
     public function edit(Story $story)
     {
         //
+        $this->authorize('update', $story);
         return view('story.edit', [
             'story' => $story
         ]);        
@@ -85,6 +86,7 @@ class StoryController extends Controller
     public function update(StoryRequest $request, Story $story)
     {
         //
+        $this->authorize('update', $story);
         $story->update( $request->all() );        
         return redirect()->route('stories.index')->with('status', 'Story updated');
     }
